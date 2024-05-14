@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource
 import org.springframework.transaction.support.TransactionSynchronizationManager
+import java.util.concurrent.ConcurrentHashMap
 import javax.sql.DataSource
 
 
@@ -38,7 +39,7 @@ class DataSourceConfig {
         val primaryDataSource = primaryDataSource()
         val standbyDataSource = standbyDataSource()
 
-        HashMap<Any, Any>().apply {
+        ConcurrentHashMap<Any, Any>().apply {
             put(DataSourceType.PRIMARY, primaryDataSource)
             put(DataSourceType.STANDBY, standbyDataSource)
         }.let(it::setTargetDataSources)
@@ -58,7 +59,7 @@ class DataSourceConfig {
 
     enum class DataSourceType {
         PRIMARY,
-        STANDBY
+        STANDBY,
     }
 }
 
