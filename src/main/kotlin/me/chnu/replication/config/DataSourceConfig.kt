@@ -51,7 +51,7 @@ class DataSourceConfig {
     fun dataSource() = LazyConnectionDataSourceProxy(routeDataSource())
 
     class DataSourceRouter : AbstractRoutingDataSource() {
-        override fun determineCurrentLookupKey() =
+        public override fun determineCurrentLookupKey() =
             if (TransactionSynchronizationManager.isCurrentTransactionReadOnly())
                 DataSourceType.STANDBY else DataSourceType.PRIMARY
     }
