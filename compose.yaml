@@ -14,7 +14,7 @@ services:
   postgres_primary:
     <<: *postgres-common
     ports:
-      - "5432:5432"
+      - "5442:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_DB: postgres
@@ -34,7 +34,7 @@ services:
   postgres_replica:
     <<: *postgres-common
     ports:
-      - "5433:5432"
+      - "5443:5432"
     environment:
       PGUSER: replicator
       PGPASSWORD: replicator_password

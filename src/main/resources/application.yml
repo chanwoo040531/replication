@@ -16,12 +16,12 @@ spring:
 
   datasource:
     primary:
-      jdbc-url: jdbc:postgresql://localhost:5432/postgres
+      jdbc-url: jdbc:postgresql://localhost:5442/postgres
       username: user
       password: password
 
     standby:
-      jdbc-url: jdbc:postgresql://localhost:5433/postgres
+      jdbc-url: jdbc:postgresql://localhost:5443/postgres
       username: user
       password: password
     driver-class-name: org.postgresql.Driver
