@@ -35,7 +35,7 @@ class DataSourceConfig {
 
     @Bean
     @DependsOn("primaryDataSource", "standbyDataSource")
-    fun routeDataSource() = DataSourceRouter().also {
+    fun dataSourceRouter() = DataSourceRouter().also {
         val primaryDataSource = primaryDataSource()
         val standbyDataSource = standbyDataSource()
 
@@ -48,8 +48,8 @@ class DataSourceConfig {
 
     @Bean
     @Primary
-    @DependsOn("routeDataSource")
-    fun dataSource() = LazyConnectionDataSourceProxy(routeDataSource())
+    @DependsOn("dataSourceRouter")
+    fun dataSource() = LazyConnectionDataSourceProxy(dataSourceRouter())
 
     class DataSourceRouter : AbstractRoutingDataSource() {
         public override fun determineCurrentLookupKey() =
@@ -62,6 +62,3 @@ class DataSourceConfig {
         STANDBY,
     }
 }
-
-
-
