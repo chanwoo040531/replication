@@ -49,7 +49,7 @@ class DataSourceConfig {
     @Bean
     @Primary
     @DependsOn("dataSourceRouter")
-    fun dataSource() = LazyConnectionDataSourceProxy(dataSourceRouter())
+    fun dataSource(dataSourceRouter: DataSourceRouter) = LazyConnectionDataSourceProxy(dataSourceRouter)
 
     class DataSourceRouter : AbstractRoutingDataSource() {
         public override fun determineCurrentLookupKey() =
