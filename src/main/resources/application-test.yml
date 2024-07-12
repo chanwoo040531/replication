@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    primary:
+      jdbc-url: jdbc:tc:postgis:15-3.4-alpine:///primary?TC_REUSABLE=true
+      username: user
+      password: password
+
+    standby:
+      jdbc-url: jdbc:tc:postgis:15-3.4-alpine:///standby?TC_REUSABLE=true
+      username: user
+      password: password
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver

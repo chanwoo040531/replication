@@ -14,14 +14,14 @@ spring:
           batch_size: 100
           time_zone: UTC
 
-  datasource:
-    primary:
-      jdbc-url: jdbc:postgresql://localhost:5442/postgres
-      username: user
-      password: password
-
-    standby:
-      jdbc-url: jdbc:postgresql://localhost:5443/postgres
-      username: user
-      password: password
-    driver-class-name: org.postgresql.Driver
+#  datasource:
+#    primary:
+#      jdbc-url: jdbc:postgresql://localhost:5442/postgres
+#      username: user
+#      password: password
+#
+#    standby:
+#      jdbc-url: jdbc:postgresql://localhost:5443/postgres
+#      username: user
+#      password: password
+#    driver-class-name: org.postgresql.Driver

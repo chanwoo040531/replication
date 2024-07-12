@@ -1,12 +1,12 @@
 package me.chnu.replication.config
 
+import me.chnu.replication.IntegrationTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.transaction.annotation.Transactional
 
-@SpringBootTest
+@IntegrationTest
 class TransactionTests {
     @Autowired
     lateinit var router: DataSourceConfig.DataSourceRouter
