@@ -59,7 +59,7 @@ class DataSourceConfig {
                 "echo 'Waiting for primary to connect...';",
                 "sleep 1s;",
                 "done;",
-                "echo 'Backup done, starting replica...'",
+                "echo 'Backup done, starting replica...';",
                 "chmod 0700 /var/lib/postgresql/data;",
                 "postgres",
             )
