@@ -24,7 +24,7 @@ class DataSourceConfig {
     @Bean
     @ServiceConnection(name = "postgreSQLContainer")
     fun primaryDBContainer(): PostgreSQLContainer<*> =
-        PostgreSQLContainer(POSTGIS_IMAGE)
+        PostgreSQLContainer(POSTGRES_IMAGE)
             .withExposedPorts(5432)
             .withDatabaseName("primary")
             .withUsername("user")
@@ -45,7 +45,7 @@ class DataSourceConfig {
     @DependsOn("primaryDBContainer")
     @ServiceConnection(name = "postgreSQLContainer")
     fun standbyDBContainer(): PostgreSQLContainer<*> =
-        PostgreSQLContainer(POSTGIS_IMAGE)
+        PostgreSQLContainer(POSTGRES_IMAGE)
             .withExposedPorts(5433)
             .withDatabaseName("standby")
             .withUsername("user")
@@ -53,23 +53,23 @@ class DataSourceConfig {
             .withEnv("PGUSER", "replicator")
             .withEnv("PGPASSWORD", "replicator_password")
             .withCommand(
-                "bash -c",
+                "bash -c;",
                 "until pg_basebackup --pgdata=/var/lib/postgresql/data -R --slot=replication_slot --host=primary --port=5432;",
-                "do",
+                "do;",
                 "echo 'Waiting for primary to connect...';",
                 "sleep 1s;",
                 "done;",
                 "echo 'Backup done, starting replica...';",
                 "chmod 0700 /var/lib/postgresql/data;",
-                "postgres",
+                "postgres;",
             )
             .withReuse(true)
             .waitingFor(Wait.forListeningPort())
 
     companion object {
-        val POSTGIS_IMAGE: DockerImageName =
+        val POSTGRES_IMAGE: DockerImageName =
             DockerImageName
-                .parse("postgis/postgis:15-3.4-alpine")
+                .parse("postgres:15.7-alpine3.20")
                 .asCompatibleSubstituteFor("postgres")
     }
 }
